@@ -51,8 +51,7 @@ if is_new:
 
     with open(csvfilename, "r", newline='') as csvfile:
         csvreader = csv.DictReader(csvfile)
-        for row in csvreader:
-            cursor.execute(insert_query, row)
+        cursor.executemany(insert_query, csvreader)
 
     connection.commit()
     cursor.close()
